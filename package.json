@@ -6,5 +6,10 @@
 		"react-dom": "16.13.1",
 		"react-highlight.js": "1.0.7"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"shadow-cljs": "2.10.16"
+	},
+	"scripts": {
+		"build": "shadow-cljs release app"
+	}
 }
