@@ -31,5 +31,5 @@
 
 (defn main-panel []
   [:div
-   [:h1 "Pomato"]
+   [:h1 "Pomato Timer"]
    [timer-input]])
