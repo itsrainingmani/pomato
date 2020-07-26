@@ -8,16 +8,17 @@
 (defn start-button []
   [:<>
    [:button {:style {:background-color "green"}
-             :on-click (fn [] (dispatch [:pomo-start]))} "Start"]])
+             :on-click (fn [] (dispatch [:pomo :start]))} "Start"]])
 
 (defn stop-button []
   [:<>
    [:button {:style {:background-color "red"}
-             :on-click (fn [] (dispatch [:pomo-stop]))} "Stop"]])
+             :on-click (fn [] (dispatch [:pomo :stop]))} "Stop"]])
 
 (defn reset-button []
   [:<>
-   [:button {:style {:background-color "grey"}} "Reset"]])
+   [:button {:style {:background-color "grey"}
+             :on-click (fn [] (dispatch [:pomo :reset]))} "Reset"]])
 
 (defn timer-input []
   (let [current-time (subscribe [::subs/curtime])]
