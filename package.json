@@ -7,7 +7,7 @@
 		"react-highlight.js": "1.0.7"
 	},
 	"devDependencies": {
-		"shadow-cljs": "2.10.16"
+		"shadow-cljs": "2.10.17"
 	},
 	"scripts": {
 		"build": "shadow-cljs release app"

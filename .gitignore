@@ -13,6 +13,7 @@
 
 # shadow-cljs cache, port files
 /.shadow-cljs/
+/shadow-cljs.edn
 
 # clj-kondo cache
 /.clj-kondo/.cache
