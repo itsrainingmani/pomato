@@ -3,7 +3,8 @@
    [pomato.util :refer [convert-sec-to-string]]
    [re-frame.core :refer [dispatch subscribe]]
    [pomato.subs :as subs]
-   [stylefy.core :as stylefy]))
+   [pomato.styles :as styles]
+   [stylefy.core :refer [use-style]]))
 
 (defn start-button []
   [:<>
@@ -12,8 +13,7 @@
 
 (defn stop-button []
   [:<>
-   [:button {:style {:background-color "red"}
-             :on-click (fn [] (dispatch [:pomo :stop]))} "Stop"]])
+   [:button (use-style styles/stop-btn {:on-click (fn [] (dispatch [:pomo :stop]))}) "Stop"]])
 
 (defn reset-button []
   [:<>
@@ -24,12 +24,12 @@
   (let [current-time (subscribe [::subs/curtime])]
     (fn []
       [:div
-       [:p (convert-sec-to-string @current-time)]
+       [:p (use-style styles/time-style) (convert-sec-to-string @current-time)]
        [start-button]
        [stop-button]
        [reset-button]])))
 
 (defn main-panel []
-  [:div
+  [:div (use-style styles/app-style)
    [:h1 "Pomato Timer"]
    [timer-input]])
