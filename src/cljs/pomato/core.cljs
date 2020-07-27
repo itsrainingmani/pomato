@@ -21,5 +21,5 @@
 (defn init []
   (re-frame/dispatch-sync [::events/initialize-db])
   (dev-setup)
-  (stylefy/init)
+  (stylefy/init {:use-caching? false})
   (mount-root))
