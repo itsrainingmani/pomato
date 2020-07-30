@@ -26,6 +26,12 @@
                         :id :pomo-timer}
              :dispatch-n [[:reset-time] [:no-timer]]})))
 
+(rf/reg-event-fx
+ :type
+ (fn [cofx [_ timer-type]]
+   {:db (assoc (:db cofx) :timer-type timer-type)}))
+
+
 (rf/reg-event-db
  :no-timer
  (fn [db _]
@@ -34,7 +40,7 @@
 (rf/reg-event-db
  :reset-time
  (fn [db _]
-   (assoc db :cur-time 1500)))
+   (assoc db :cur-time (:default-time db))))
 
 (rf/reg-event-fx
  :dec-time
