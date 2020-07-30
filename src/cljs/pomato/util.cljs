@@ -7,4 +7,4 @@
   [seconds]
   (let [mins (quot seconds 60)
         secs (rem seconds 60)]
-    (str mins ":" (gstring/format "%02d"  secs))))
+    (str (gstring/format "%02d" mins) ":" (gstring/format "%02d"  secs))))
