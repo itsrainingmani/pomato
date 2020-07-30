@@ -14,7 +14,7 @@
  :pomo
  (fn [cofx [_ pomo-type]]
    (case pomo-type
-     :start (when-not (clojure.core/contains? (:db cofx) :is-timer?)
+     :start (when-not (or (zero? (get-in cofx [:db :cur-time] 0)) (clojure.core/contains? (:db cofx) :is-timer?))
               {:interval {:action :start
                           :id :pomo-timer
                           :frequency 1000}
@@ -36,7 +36,10 @@
  (fn [db _]
    (assoc db :cur-time 1500)))
 
-(rf/reg-event-db
+(rf/reg-event-fx
  :dec-time
- (fn [db _]
-   (update db :cur-time dec)))
+ (fn [cofx _]
+   (let [curtime (get-in cofx [:db :cur-time] 0)]
+     (if (zero? curtime)
+       {:dispatch [:pomo :stop]}
+       {:db (update (:db cofx) :cur-time dec)}))))
