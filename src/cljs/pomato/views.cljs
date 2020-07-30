@@ -14,7 +14,7 @@
 (defn stop-button []
   [:<>
    [:button (use-style styles/stop-btn-style
-                       {:on-click (fn [] (dispatch [:pomo :stop]))}) "Stop"]])
+                       {:on-click (fn [] (dispatch [:pomo :stop]))}) "Stop"]]) 
 
 (defn reset-button []
   [:<>
@@ -22,19 +22,23 @@
                        {:on-click (fn [] (dispatch [:pomo :reset]))}) "Reset"]])
 
 (defn timer-input []
-  (let [current-time (subscribe [::subs/curtime])]
+  (let [current-time (subscribe [::subs/curtime])
+        is-timer?    (subscribe [::subs/is-timer?])]
     (fn []
       [:div
-       [:p (use-style styles/time-style) (convert-sec-to-string @current-time)]
+       [:p (use-style (merge styles/time-style
+                      (when (= @is-timer? true) styles/rainbow-color)))
+          (convert-sec-to-string @current-time)]
        [start-button]
        [stop-button]
        [reset-button]])))
+
 
 (defn main-panel []
   [:div (use-style styles/app-style)
    [:h1 (use-style styles/heading-style) "Pomato Timer"]
    [timer-input]
-   [:svg {:viewBox "0 0 1440 320" :style {:position "absolute" :z-index "-1"}}
+   [:svg {:viewBox "0 0 1100 320" :style {:position "absolute" :z-index "-1"}}
     [:path
      {:fill "rgb(135, 224, 255)"
       :fill-opacity "1"
