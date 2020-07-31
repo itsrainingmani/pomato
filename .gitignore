@@ -18,4 +18,6 @@
 # clj-kondo cache
 /.clj-kondo/.cache
 
+/.calva
+
 .vercel
