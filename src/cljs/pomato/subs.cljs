@@ -11,3 +11,8 @@
  ::is-timer?
  (fn [db]
    (get db :is-timer? false)))
+
+(rf/reg-sub
+ ::timer-type
+ (fn [db]
+   (:timer-type db)))
