@@ -21,19 +21,19 @@
    [:button (use-style styles/reset-btn-style
                        {:on-click (fn [] (dispatch [:pomo :reset]))}) "Reset"]])
 
-(defn classic-btn []
+(defn classic-btn [tt]
   [:<>
-   [:button  (use-style styles/pomo-btn-style
+   [:button  (use-style (merge styles/pomo-btn-style (when tt {:background-color "purple"}))
                         {:on-click (fn [] (dispatch [:type :classic]))}) "Classic"]])
 
-(defn long-btn []
+(defn long-btn [tt]
   [:<>
-   [:button (use-style styles/pomo-btn-style
+   [:button (use-style (merge styles/pomo-btn-style (when tt {:background-color "purple"}))
                        {:on-click (fn [] (dispatch [:type :long]))}) "Long"]])
 
-(defn short-btn []
+(defn short-btn [tt]
   [:<>
-   [:button (use-style styles/pomo-btn-style
+   [:button (use-style (merge styles/pomo-btn-style (when tt {:background-color "purple"}))
                        {:on-click (fn [] (dispatch [:type :short]))}) "Short"]])
 
 
@@ -54,10 +54,12 @@
        [reset-button]])))
 
 (defn pomodoro-types []
-  [:div
-   [classic-btn]
-   [long-btn]
-   [short-btn]])
+  (fn []
+    (let [timer-type @(subscribe [::subs/timer-type])]
+      [:div
+       (classic-btn (= :classic timer-type))
+       (long-btn (= :long timer-type))
+       (short-btn (= :short timer-type))])))
 
 (defn footer-comp []
   [:footer {:style {:position "absolute" :bottom "2px" :width "100%" :text-align "center" :font-family "Work Sans"}}
