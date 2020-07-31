@@ -29,7 +29,8 @@
 (rf/reg-event-fx
  :type
  (fn [cofx [_ timer-type]]
-   {:db (assoc (:db cofx) :timer-type timer-type)}))
+   {:db (assoc (:db cofx) :timer-type timer-type)
+    :dispatch [:pomo :reset]}))
 
 
 (rf/reg-event-db
@@ -40,7 +41,9 @@
 (rf/reg-event-db
  :reset-time
  (fn [db _]
-   (assoc db :cur-time (:default-time db))))
+   (let [timer-type (:timer-type db)
+         type-dur   (get-in db [:timer-dur timer-type])]
+     (assoc db :cur-time type-dur))))
 
 (rf/reg-event-fx
  :dec-time
