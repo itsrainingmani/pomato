@@ -1,7 +1,10 @@
 # pomato
 
-A [re-frame](https://github.com/day8/re-frame) application designed to ... well, that part is up to
-you.
+Pomato is a PomoDoro Timer built using [re-frame](https://github.com/day8/re-frame)
+
+![Pomato](https://cdn.discordapp.com/attachments/724449094164152350/738522104760238190/unknown.png)
+
+It was built as part of the AthensResearch [ClojureFam](https://github.com/athensresearch/clojurefam) program.
 
 ## Getting Started
 
