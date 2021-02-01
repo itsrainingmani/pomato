@@ -3,7 +3,21 @@
    [re-frame.core :as rf]
    [pomato.db :as db]
    [pomato.effects :as effects]
-   [day8.re-frame.tracing :refer-macros [fn-traced]]))
+   [day8.re-frame.tracing :refer-macros [fn-traced]]
+   [goog.events.KeyCodes :as keycodes]
+   [goog.events :as gev])
+  (:import [goog.event EventType KeyHandler]))
+
+(defn capture-key
+  "Given a keycode, execute a function"
+  [keycode-map]
+  (let [key-handler (KeyHandler. js/document)
+        press-fn (fn [key-press]
+                   (when-let [f (get keycode-map (.. key-press -keyCode))]
+                     (f)))]
+    (gev/listen key-handler
+                (-> KeyHandler .-EventType .-KEY)
+                press-fn)))
 
 (rf/reg-event-db
  ::initialize-db
