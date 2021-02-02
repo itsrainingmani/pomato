@@ -10,9 +10,7 @@
                    [:50% {:color "#DC352C"}]
                    [:100% {:color "black"}])
 
-
 (stylefy/tag "body" {:margin "0 0 0 0"})
-
 
 (def general-btn-style {:border-radius "6px"
                         :font-weight 600
@@ -57,8 +55,7 @@
                   ::stylefy/vendors ["webkit" "moz" "o"]
                   ::stylefy/auto-prefix #{:animation}})
 
-(def heading-style {
-                    ;; :font-style "italic"
+(def heading-style {;; :font-style "italic"
                     ;; :text-transform "uppercase"
                     :font-size "4em"
                     :font-weight 800

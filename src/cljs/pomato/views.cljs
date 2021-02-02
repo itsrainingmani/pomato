@@ -36,7 +36,6 @@
    [:button (use-style (merge styles/pomo-btn-style (when tt {:background-color "purple"}))
                        {:on-click (fn [] (dispatch [:type :short]))}) "Short"]])
 
-
 (defn timer-input []
   (let [current-time (subscribe [::subs/curtime])
         is-timer?    (subscribe [::subs/is-timer?])]
