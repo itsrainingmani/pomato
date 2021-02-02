@@ -10,7 +10,7 @@
   [seconds]
   (let [mins (quot seconds 60)
         secs (rem seconds 60)]
-    (str (gstring/format "%02d" mins) ":" (gstring/format "%02d"  secs))))
+    (str (gstring/format "%02d" mins) ":" (gstring/format "%02d" secs))))
 
 (defn capture-key
   "Given a `keycode`, execute function `f` "
@@ -24,7 +24,7 @@
                 press-fn)))
 
 (defn app-keybindings []
-    ;; sets up the event listener
+  ;; sets up the event listener
   (capture-key {keycodes/l #(js/alert "Luna Lovegood")
                 keycodes/d #(js/alert "Dumbledore")
                 keycodes/h #(js/alert "Hermione")

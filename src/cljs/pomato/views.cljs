@@ -1,15 +1,15 @@
 (ns pomato.views
   (:require
-   [pomato.util :refer [convert-sec-to-string]]
-   [re-frame.core :refer [dispatch subscribe]]
-   [pomato.subs :as subs]
-   [pomato.styles :as styles]
-   [stylefy.core :refer [use-style]]))
+    [pomato.util :refer [convert-sec-to-string]]
+    [re-frame.core :refer [dispatch subscribe]]
+    [pomato.subs :as subs]
+    [pomato.styles :as styles]
+    [stylefy.core :refer [use-style]]))
 
 (defn start-button []
   [:<>
-   [:button  (use-style styles/start-btn-style
-                        {:on-click (fn [] (dispatch [:pomo :start]))}) "Start"]])
+   [:button (use-style styles/start-btn-style
+                       {:on-click (fn [] (dispatch [:pomo :start]))}) "Start"]])
 
 (defn stop-button []
   [:<>
@@ -23,8 +23,8 @@
 
 (defn classic-btn [tt]
   [:<>
-   [:button  (use-style (merge styles/pomo-btn-style (when tt {:background-color "purple"}))
-                        {:on-click (fn [] (dispatch [:type :classic]))}) "Classic"]])
+   [:button (use-style (merge styles/pomo-btn-style (when tt {:background-color "purple"}))
+                       {:on-click (fn [] (dispatch [:type :classic]))}) "Classic"]])
 
 (defn long-btn [tt]
   [:<>
@@ -38,7 +38,7 @@
 
 (defn timer-input []
   (let [current-time (subscribe [::subs/curtime])
-        is-timer?    (subscribe [::subs/is-timer?])]
+        is-timer? (subscribe [::subs/is-timer?])]
     (fn []
       [:div
        [:p (use-style (merge styles/time-style
@@ -74,7 +74,7 @@
    [timer-input]
    [:svg {:viewBox "0 0 1100 320" :style {:position "absolute" :z-index "-1"}}
     [:path
-     {:fill "rgb(30, 199, 252)"
+     {:fill         "rgb(30, 199, 252)"
       :fill-opacity "1"
-      :d "M0,64L21.8,101.3C43.6,139,87,213,131,218.7C174.5,224,218,160,262,160C305.5,160,349,224,393,245.3C436.4,267,480,245,524,250.7C567.3,256,611,288,655,288C698.2,288,742,256,785,218.7C829.1,181,873,139,916,149.3C960,160,1004,224,1047,229.3C1090.9,235,1135,181,1178,149.3C1221.8,117,1265,107,1309,133.3C1352.7,160,1396,224,1418,256L1440,288L1440,0L1418.2,0C1396.4,0,1353,0,1309,0C1265.5,0,1222,0,1178,0C1134.5,0,1091,0,1047,0C1003.6,0,960,0,916,0C872.7,0,829,0,785,0C741.8,0,698,0,655,0C610.9,0,567,0,524,0C480,0,436,0,393,0C349.1,0,305,0,262,0C218.2,0,175,0,131,0C87.3,0,44,0,22,0L0,0Z"}]]
+      :d            "M0,64L21.8,101.3C43.6,139,87,213,131,218.7C174.5,224,218,160,262,160C305.5,160,349,224,393,245.3C436.4,267,480,245,524,250.7C567.3,256,611,288,655,288C698.2,288,742,256,785,218.7C829.1,181,873,139,916,149.3C960,160,1004,224,1047,229.3C1090.9,235,1135,181,1178,149.3C1221.8,117,1265,107,1309,133.3C1352.7,160,1396,224,1418,256L1440,288L1440,0L1418.2,0C1396.4,0,1353,0,1309,0C1265.5,0,1222,0,1178,0C1134.5,0,1091,0,1047,0C1003.6,0,960,0,916,0C872.7,0,829,0,785,0C741.8,0,698,0,655,0C610.9,0,567,0,524,0C480,0,436,0,393,0C349.1,0,305,0,262,0C218.2,0,175,0,131,0C87.3,0,44,0,22,0L0,0Z"}]]
    [footer-comp]])
