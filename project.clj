@@ -1,5 +1,5 @@
 (defproject pomato "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.10.1"]
+  :dependencies [[org.clojure/clojure "1.10.2"]
                  [org.clojure/clojurescript "1.10.773"
                   :exclusions [com.google.javascript/closure-compiler-unshaded
                                org.clojure/google-closure-library
@@ -11,8 +11,8 @@
                  [stylefy "2.2.1"]]
 
   :plugins [[lein-shadow "0.2.0"]
-
-            [lein-shell "0.5.0"]]
+            [lein-shell "0.5.0"]
+            [lein-cljfmt "0.7.0"]]
 
   :min-lein-version "2.9.0"
 
