@@ -32,6 +32,10 @@
    {:db (assoc (:db cofx) :timer-type timer-type)
     :dispatch [:pomo :reset]}))
 
+(rf/reg-event-fx
+ :test
+ (fn [_ [_ _]]
+   {::effects/log message}))
 
 (rf/reg-event-db
  :no-timer
