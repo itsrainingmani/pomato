@@ -10,7 +10,7 @@
         (do (js/clearInterval (get @live-intervals id))
             (swap! live-intervals dissoc id))))))
 
-(reg-fx
-  ::log
-  (fn [message]
-    (js/console.log message)))
+;; (reg-fx
+;;   ::log
+;;   (fn [message]
+;;     (js/console.log message)))
