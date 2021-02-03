@@ -28,7 +28,7 @@
                              :macosx  "open"
                              :linux   "xdg-open"}}}
 
-  :shadow-cljs {:nrepl  {:port 8777}
+  :shadow-cljs {:nrepl {:port 8777}
 
                 :builds {:app {:target     :browser
                                :output-dir "resources/public/js/compiled"
@@ -42,8 +42,8 @@
                                             {:ns-aliases
                                              {day8.re-frame.tracing day8.re-frame.tracing-stubs}}}
 
-                               :devtools   {:http-root "resources/public"
-                                            :http-port 8280}}}}
+                               :devtools {:http-root "resources/public"
+                                          :http-port 8280}}}}
 
   :aliases {"dev"          ["with-profile" "dev" "do"
                             ["shadow" "watch" "app"]]
@@ -58,9 +58,9 @@
 
   :profiles
   {:dev
-         {:dependencies [[binaryage/devtools "1.0.2"]
-                         [day8.re-frame/re-frame-10x "0.7.0"]]
-          :source-paths ["dev"]}
+   {:dependencies [[binaryage/devtools "1.0.2"]
+                   [day8.re-frame/re-frame-10x "0.7.0"]]
+    :source-paths ["dev"]}
 
    :prod {}}
 
