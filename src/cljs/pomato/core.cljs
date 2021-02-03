@@ -22,7 +22,7 @@
   (re-frame/dispatch-sync [::events/initialize-db])
   (re-frame/dispatch-sync [::rp/add-keyboard-event-listener "keypress"])
   (re-frame/dispatch [::rp/set-keypress-rules
-                      {:event-keys [[[::events/test] [{:keyCode 32}]]]}])
+                      {:event-keys [[[::events/space] [{:keyCode 32}]]]}])
   (dev-setup)
   (stylefy/init)
   (mount-root))
