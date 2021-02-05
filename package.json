@@ -1,5 +1,7 @@
 {
 	"name": "pomato",
+	"description": "Pomato is a PomoDoro Timer built using re-frame",  
+	"version": "1.0",
 	"dependencies": {
 		"highlight.js": "10.4.1",
 		"react": "16.13.1",
