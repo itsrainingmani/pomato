@@ -9,17 +9,17 @@
 (defn start-button []
   [:<>
    [:button (use-style styles/start-btn-style
-                       {:on-click (fn [] (dispatch [:pomo :start]))}) "Start"]])
+                       {:on-click (fn [] (dispatch [:pomo-start]))}) "Start"]])
 
 (defn stop-button []
   [:<>
    [:button (use-style styles/stop-btn-style
-                       {:on-click (fn [] (dispatch [:pomo :stop]))}) "Stop"]])
+                       {:on-click (fn [] (dispatch [:pomo-stop]))}) "Stop"]])
 
 (defn reset-button []
   [:<>
    [:button (use-style styles/reset-btn-style
-                       {:on-click (fn [] (dispatch [:pomo :reset]))}) "Reset"]])
+                       {:on-click (fn [] (dispatch [:pomo-reset]))}) "Reset"]])
 
 (defn classic-btn [tt]
   [:<>
