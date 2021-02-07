@@ -10,21 +10,21 @@
   (fn-traced [_ _]
              db/rfdb))
 
-(rf/reg-event-fx
- :pomo
- (fn [cofx [_ pomo-type]]
-   (case pomo-type
-     :start (when-not (or (zero? (get-in cofx [:db :cur-time] 0)) (clojure.core/contains? (:db cofx) :is-timer?))
-              {:interval {:action :start
-                          :id :pomo-timer
-                          :frequency 1000}
-               :db (assoc (:db cofx) :is-timer? true)})
-     :stop {:interval {:action :cancel
-                       :id :pomo-timer}
-            :dispatch [:no-timer]}
-     :reset {:interval {:action :cancel
-                        :id :pomo-timer}
-             :dispatch-n [[:reset-time] [:no-timer]]})))
+;; (rf/reg-event-fx
+;;  :pomo
+;;  (fn [cofx [_ pomo-type]]
+;;    (case pomo-type
+;;      :start (when-not (or (zero? (get-in cofx [:db :cur-time] 0)) (clojure.core/contains? (:db cofx) :is-timer?))
+;;               {:interval {:action :start
+;;                           :id :pomo-timer
+;;                           :frequency 1000}
+;;                :db (assoc (:db cofx) :is-timer? true)})
+;;      :stop {:interval {:action :cancel
+;;                        :id :pomo-timer}
+;;             :dispatch [:no-timer]}
+;;      :reset {:interval {:action :cancel
+;;                         :id :pomo-timer}
+;;              :dispatch-n [[:reset-time] [:no-timer]]})))
 
 (rf/reg-event-fx
  :pomo-start
@@ -54,7 +54,7 @@
   :type
   (fn [cofx [_ timer-type]]
     {:db       (assoc (:db cofx) :timer-type timer-type)
-     :dispatch [:pomo :reset]}))
+     :dispatch [:pomo-reset]}))
 
 (rf/reg-event-fx
   ::space
@@ -62,8 +62,8 @@
     (prn cofx)
     (let [is-timer (get-in cofx [:db :is-timer?] false)]
       (if is-timer
-        {:dispatch [:pomo :stop]}
-        {:dispatch [:pomo :start]}))))
+        {:dispatch [:pomo-stop]}
+        {:dispatch [:pomo-start]}))))
 
 (rf/reg-event-db
   :no-timer
