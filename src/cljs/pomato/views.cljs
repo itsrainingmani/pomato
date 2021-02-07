@@ -42,11 +42,11 @@
     (fn []
       [:div
        [:p (use-style (merge styles/time-style
-                             (if (= @is-timer? true)
+                             (if (true? @is-timer?)
                                (cond
-                                 (< @current-time 10) styles/flash-color
+                                 (< @current-time 30) styles/flash-color
                                  :else styles/rainbow-color)
-                               (when (zero? @current-time) {:color "#DC352C"}))))
+                               (when (< @current-time 30) {:color "#DC352C"}))))
         (convert-sec-to-string @current-time)]
        [start-button]
        [stop-button]
