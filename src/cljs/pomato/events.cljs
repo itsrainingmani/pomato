@@ -27,6 +27,30 @@
              :dispatch-n [[:reset-time] [:no-timer]]})))
 
 (rf/reg-event-fx
+ :pomo-start
+ (fn [cofx _]
+   (when-not (or (zero? (get-in cofx [:db :cur-time] 0)) (clojure.core/contains? (:db cofx) :is-timer?))
+     {:interval {:action :start
+                 :id :pomo-timer
+                 :frequency 1000}
+      :db (assoc (:db cofx) :is-timer? true)})))
+
+(rf/reg-event-fx
+ :pomo-stop
+ (fn [cofx _]
+   (when (clojure.core/contains? (:db cofx) :is-timer?)
+     {:interval {:action :cancel
+                 :id :pomo-timer}
+      :dispatch [:no-timer]})))
+
+(rf/reg-event-fx
+ :pomo-reset
+ (fn [_ _]
+   {:interval {:action :cancel
+               :id :pomo-timer}
+    :dispatch-n [[:reset-time] [:no-timer]]}))
+
+(rf/reg-event-fx
   :type
   (fn [cofx [_ timer-type]]
     {:db       (assoc (:db cofx) :timer-type timer-type)
