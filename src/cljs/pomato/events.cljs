@@ -48,7 +48,7 @@
  (fn [_ _]
    {:interval {:action :cancel
                :id :pomo-timer}
-    :dispatch-n [[:reset-time] [:no-timer]]}))
+    :dispatch-n [[:no-timer] [:reset-time]]}))
 
 (rf/reg-event-fx
   :type
