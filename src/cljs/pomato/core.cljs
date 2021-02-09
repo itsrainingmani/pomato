@@ -6,7 +6,7 @@
     [pomato.views :as views]
     [pomato.config :as config]
     [stylefy.core :as stylefy]
-    [re-pressed.core :as rp]))
+    [keybind.core :as key]))
 
 (defn dev-setup []
   (when config/debug?
@@ -20,9 +20,7 @@
 
 (defn init []
   (re-frame/dispatch-sync [::events/initialize-db])
-  (re-frame/dispatch-sync [::rp/add-keyboard-event-listener "keypress"])
-  (re-frame/dispatch [::rp/set-keypress-rules
-                      {:event-keys [[[::events/space] [{:keyCode 32}]]]}])
+  (key/bind! "ctrl-c" ::my-trigger #(js/console.log "Sequence fired properly"))
   (dev-setup)
   (stylefy/init)
   (mount-root))

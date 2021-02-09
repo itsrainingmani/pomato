@@ -9,7 +9,7 @@
                  [re-frame "1.0.0"]
                  [day8.re-frame/tracing "0.6.0"]
                  [stylefy "2.2.1"]
-                 [re-pressed "0.3.1"]]
+                 [keybind "2.2.0"]]
 
   :plugins [[lein-shadow "0.2.0"]
             [lein-shell "0.5.0"]
