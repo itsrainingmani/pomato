@@ -4,9 +4,9 @@
     [re-frame.core :as re-frame]
     [pomato.events :as events]
     [pomato.views :as views]
+    [pomato.util :as util]
     [pomato.config :as config]
-    [stylefy.core :as stylefy]
-    [keybind.core :as key]))
+    [stylefy.core :as stylefy]))
 
 (defn dev-setup []
   (when config/debug?
@@ -20,7 +20,7 @@
 
 (defn init []
   (re-frame/dispatch-sync [::events/initialize-db])
-  (key/bind! "ctrl-c" ::my-trigger #(js/console.log "Sequence fired properly"))
+  (util/keybinds)
   (dev-setup)
   (stylefy/init)
   (mount-root))
