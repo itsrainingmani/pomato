@@ -16,4 +16,5 @@
   "Define global keybinds"
   []
   (key/bind! "ctrl-c" ::my-trigger #(js/console.log "Sequence fired properly"))
-  (key/bind! "space" ::start-stop #(rf/dispatch [::events/space])))
+  (key/bind! "s" ::start-stop #(rf/dispatch [::events/space]))
+  (key/bind! "r" ::key-reset #(rf/dispatch [:pomo-reset])))
