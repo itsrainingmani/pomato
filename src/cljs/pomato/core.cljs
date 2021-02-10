@@ -1,12 +1,12 @@
 (ns pomato.core
   (:require
-    [reagent.dom :as rdom]
-    [re-frame.core :as re-frame]
-    [pomato.events :as events]
-    [pomato.views :as views]
-    [pomato.util :as util]
-    [pomato.config :as config]
-    [stylefy.core :as stylefy]))
+   [reagent.dom :as rdom]
+   [re-frame.core :as re-frame]
+   [pomato.events :as events]
+   [pomato.views :as views]
+   [pomato.util :as util]
+   [pomato.config :as config]
+   [stylefy.core :as stylefy]))
 
 (defn dev-setup []
   (when config/debug?

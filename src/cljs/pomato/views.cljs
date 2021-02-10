@@ -1,10 +1,10 @@
 (ns pomato.views
   (:require
-    [pomato.util :refer [convert-sec-to-string]]
-    [re-frame.core :refer [dispatch subscribe]]
-    [pomato.subs :as subs]
-    [pomato.styles :as styles]
-    [stylefy.core :refer [use-style]]))
+   [pomato.util :refer [convert-sec-to-string]]
+   [re-frame.core :refer [dispatch subscribe]]
+   [pomato.subs :as subs]
+   [pomato.styles :as styles]
+   [stylefy.core :refer [use-style]]))
 
 (defn start-button []
   [:<>
