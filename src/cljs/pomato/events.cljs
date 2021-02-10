@@ -25,14 +25,18 @@
    (when (true? (get-in cofx [:db :is-timer?]))
      {:interval {:action :cancel
                  :id :pomo-timer}
-      :db (assoc (:db cofx) :is-timer? true)})))
+      :db (assoc (:db cofx) :is-timer? false)})))
 
 (rf/reg-event-fx
  :pomo-reset
- (fn [_ _]
-   {:interval {:action :cancel
-               :id :pomo-timer}
-    :dispatch-n [[:no-timer] [:reset-time]]}))
+ (fn [{:keys [db]} _]
+   (let [timer-type (:timer-type db)
+         type-dur (get-in db [:timer-dur timer-type])]
+     {:interval {:action :cancel
+                 :id :pomo-timer}
+      :db (-> db
+                (assoc :cur-time type-dur)
+                (assoc :is-timer? false))})))
 
 (rf/reg-event-fx
  :type
@@ -59,7 +63,9 @@
  (fn [db _]
    (let [timer-type (:timer-type db)
          type-dur (get-in db [:timer-dur timer-type])]
-     (assoc db :cur-time type-dur))))
+     {:db (-> db
+              (assoc :cur-time type-dur)
+              (assoc :is-timer? false))})))
 
 (rf/reg-event-fx
  :dec-time
