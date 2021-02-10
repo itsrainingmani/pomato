@@ -29,7 +29,7 @@
 (rf/reg-event-fx
  :pomo-start
  (fn [cofx _]
-   (when-not (or (zero? (get-in cofx [:db :cur-time] 0)) (clojure.core/contains? (:db cofx) :is-timer?))
+   (when-not (or (zero? (get-in cofx [:db :cur-time] 0)) (true? (get-in cofx [:db :is-timer?])))
      {:interval {:action :start
                  :id :pomo-timer
                  :frequency 1000}
@@ -38,10 +38,10 @@
 (rf/reg-event-fx
  :pomo-stop
  (fn [cofx _]
-   (when (clojure.core/contains? (:db cofx) :is-timer?)
+   (when (true? (get-in cofx [:db :is-timer?]))
      {:interval {:action :cancel
                  :id :pomo-timer}
-      :dispatch [:no-timer]})))
+      :db (assoc (:db cofx) :is-timer? true)})))
 
 (rf/reg-event-fx
  :pomo-reset
@@ -65,10 +65,10 @@
         {:dispatch [:pomo-stop]}
         {:dispatch [:pomo-start]}))))
 
-(rf/reg-event-db
-  :no-timer
-  (fn [db _]
-    (clojure.core/dissoc db :is-timer?)))
+;; (rf/reg-event-db
+;;   :no-timer
+;;   (fn [db _]
+;;     (clojure.core/dissoc db :is-timer?)))
 
 (rf/reg-event-db
   :reset-time
